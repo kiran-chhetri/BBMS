@@ -15,8 +15,7 @@ pip-delete-this-directory.txt
 *.log
 local_settings.py
 media/
-# Do not ignore db.sqlite3 if you are intentionally tracking it in your project
-# db.sqlite3
+db.sqlite3
 
 # OS / IDE
 .DS_Store

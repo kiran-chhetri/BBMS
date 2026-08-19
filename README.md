@@ -14,14 +14,13 @@ This project aims to develop a comprehensive web-based platform to automate dono
 
 ## Technology Stack
 - **Backend**: Django (Python)
-- **Database**: MySQL
+- **Database**: SQLite
 - **Frontend**: HTML5, CSS3, Bootstrap 5, JavaScript (Chart.js, TomSelect)
 
 ## Local Development Setup
 
 ### Prerequisites
 - Python 3.10+
-- MySQL Server (or XAMPP for local testing)
 
 ### Installation Steps
 
@@ -46,23 +45,16 @@ This project aims to develop a comprehensive web-based platform to automate dono
    pip install -r requirements.txt
    ```
 
-4. **Environment Configuration:**
-   Create a `.env` file in the root directory (same folder as `manage.py`) and add your database credentials and settings:
+4. **Environment Configuration (Optional):**
+   Create a `.env` file in the root directory (same folder as `manage.py`) for custom secret key or debug mode:
    ```env
    DJANGO_SECRET_KEY=your-secure-secret-key
    DJANGO_DEBUG=True
    DJANGO_ALLOWED_HOSTS=*
-   
-   # Database Settings
-   DB_NAME=blood_bank_db
-   DB_USER=root
-   DB_PASSWORD=
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
    ```
 
 5. **Database Setup:**
-   Ensure your MySQL server is running and you have created a database named `blood_bank_db`. Then run the migrations:
+   Run migrations to initialize the SQLite database:
    ```bash
    python manage.py migrate
    ```
