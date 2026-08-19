@@ -4,14 +4,6 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
-from django.db.backends.base.base import BaseDatabaseWrapper
-from django.db.backends.mysql.features import DatabaseFeatures
-
-# Allow MariaDB 10.4+ in XAMPP
-BaseDatabaseWrapper.check_database_version_supported = lambda self: None
-DatabaseFeatures.can_return_columns_from_insert = False
-DatabaseFeatures.can_return_rows_from_bulk_insert = False
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
@@ -71,24 +63,10 @@ WSGI_APPLICATION = 'blood_bank_system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'blood_bank_db'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-        'PORT': os.getenv('DB_PORT', '3306'),
-        'OPTIONS': {'charset': 'utf8mb4'},
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-import sys  # noqa: E402
-if 'test' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
-        }
-    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
